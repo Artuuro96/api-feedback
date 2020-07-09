@@ -1,0 +1,85 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Blah",
+        "description": "",
+        "version": "1.0"
+    },
+    "produces": ["application/json"],
+    "paths": {
+        "/api/feedbacks": {
+            "get": {
+                "x-swagger-router-controller": "home",
+                "operationId": "index1",
+                "tags": ["Feedbacks"],
+                "description": "[Login 123](https://www.google.com)",
+                "parameters": [{
+                    "name": "test",
+                    "in": "formData",
+                    "type": "array",
+                    "collectionFormat": "multi",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                { "name": "profileId", "in": "formData", "required": true, "type": "string" },
+                { "name": "file", "in": "formData", "type": "file", "required": "true" }],
+                "responses": {}
+            },
+            "post": {
+                "x-swagger-router-controller": "home",
+                "operationId": "index2",
+                "tags": ["Feedbacks"],
+                "description": "[Login 123](https://www.google.com)",
+                "parameters": [{
+                    "name": "test",
+                    "in": "formData",
+                    "type": "array",
+                    "collectionFormat": "multi",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                { "name": "profileId", "in": "formData", "required": true, "type": "string" },
+                { "name": "file", "in": "formData", "type": "file", "required": "true" }],
+                "responses": {}
+            },
+            "put": {
+                "x-swagger-router-controller": "home",
+                "operationId": "index3",
+                "tags": ["Feedbacks"],
+                "description": "[Login 123](https://www.google.com)",
+                "parameters": [{
+                    "name": "test",
+                    "in": "formData",
+                    "type": "array",
+                    "collectionFormat": "multi",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                { "name": "profileId", "in": "formData", "required": true, "type": "string" },
+                { "name": "file", "in": "formData", "type": "file", "required": "true" }],
+                "responses": {}
+            },
+            "delete": {
+                "x-swagger-router-controller": "home",
+                "operationId": "index4",
+                "tags": ["Feedbacks"],
+                "description": "[Login 123](https://www.google.com)",
+                "parameters": [{
+                    "name": "test",
+                    "in": "formData",
+                    "type": "array",
+                    "collectionFormat": "multi",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                { "name": "profileId", "in": "formData", "required": true, "type": "string" },
+                { "name": "file", "in": "formData", "type": "file", "required": "true" }],
+                "responses": {}
+            }
+        }
+    }
+}
