@@ -9,6 +9,7 @@ I decided to use a No-SQL database such as MongoDB because this is a little proj
 > ```
 > git clone https://github.com/Artuuro96/api-feedback.git
 > cd api-feedback
+> mkdir .env        //you have to add the env vars to running project (PORT and MONGODB_URI)
 > npm install --save
 > node src/index.js
 
