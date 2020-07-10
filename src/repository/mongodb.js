@@ -1,6 +1,53 @@
 const Order = require("../schemas/orders");
 const User = require("../schemas/users");
 
+const updateFeedback = async (feedback, idOrder, idUser) => {
+    try {
+        const userUpdated = await Order.findByIdAndUpdate({
+            _id: idOrder,
+            idUser
+        }, feedback, {
+            new: true,
+            useFindAndModify: false
+        }).catch(error => {
+            throw error;
+        });
+        return userUpdated;
+    } catch (error) {
+        throw error;
+    }
+}
+
+const getFeedbacks = async (idOrder) => {
+    try {
+        const query = idOrder ? { _id: idOrder } : {};
+        const orders = await Order.find(query).catch(error => {
+            throw error
+        })
+        return orders;
+    } catch (error) {
+        throw error;
+    }
+}
+
+const deleteFeedback = async (order, idOrder, idUser) => {
+    try {
+        order.feedback = "";
+        const feedbackUpdated = await Order.findByIdAndUpdate({
+            _id: idOrder,
+            idUser
+        }, order, {
+            new: true,
+            useFindAndModify: false
+        }).catch(error => {
+            throw error;
+        });
+        return feedbackUpdated;
+    } catch (error) {
+        throw error;
+    }
+}
+
 const saveOder = async (order) => {
     try {
         const newOrder = new Order(order);
@@ -41,9 +88,12 @@ const getOrders = async (idOrder) => {
     }
 }
 
-const deleteOrder = async (idOrder) => {
+const deleteOrder = async (idOrder, idUser) => {
     try {
-        await Order.deleteOne({_id: idOrder}).catch(error => {
+        await Order.deleteOne({
+            _id: idOrder,
+            idUser
+        }).catch(error => {
             throw error;
         });
         return true;
@@ -109,6 +159,10 @@ const deleteUser = async (idUser) => {
 }
 
 module.exports = {
+    saveFeedback,
+    updateFeedback,
+    deleteFeedback,
+    getFeedbacks,
     saveOder,
     updateOrder,
     deleteOrder,

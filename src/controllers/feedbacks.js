@@ -1,36 +1,22 @@
 const saveFeedback = require("../services/feedback/saveFeedback");
+const editFeedback = require("../services/feedback/editFeedback");
+const eliminateFeedback = require("../services/feedback/eliminateFeedback");
+const getFeedback = require("../services/feedback/getFeedback");
 
 const createFeedback = async (req, res) => {
-    try {
-        const payload = await saveFeedback(req.body).catch(error => {
-            throw error;
-        });
-        return res.status(payload.status).jsonp(payload);
-    } catch (error) {
-        console.error(error);
-        if(error instanceof Error) {
-            return res.status(500).jsonp({
-                status: 500,
-                message: error.message
-            })
-        }
-        return res.status(error.status).jsonp({
-            status: error.status,
-            message: error.message
-        });
-    }
+    return await editFeedback(req, res);
 }
 
 const readFeedback = async (req, res) => {
-    //return await readFeedbacks(req, res);
+    return await getFeedback(req, res);
 }
 
 const updateFeedback = async (req, res) => {
-    //return await updateFeedback(req, res);
+    return await editFeedback(req, res);
 }
 
-const eliminateFeedback = async (req, res) => {
-    //return await eliminateFeedback(res, res);
+const deleteFeedback = async (req, res) => {
+    return await eliminateFeedback(req, res)
 }
 
 
@@ -38,5 +24,5 @@ module.exports = {
     createFeedback,
     readFeedback, 
     updateFeedback,
-    eliminateFeedback
+    deleteFeedback
 };

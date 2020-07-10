@@ -21,6 +21,7 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "mongoose": "^5.9.22",
+    "swagger-jsdoc": "^4.0.0",
     "swagger-ui-express": "^4.1.4",
     "validate": "^5.1.0"
   },
