@@ -112,7 +112,11 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/InventoryItemWithoutIds'
+              type: object
+              properties:
+                feedback:
+                  type: object
+                  $ref: '#/components/schemas/Feedbacks'
       responses: 
         '200':
           description: Create order feedbacks 
@@ -137,10 +141,15 @@ paths:
           schema:
             type: string
       requestBody:
+        required: true
         content:
           application/json:
-            schema: 
-              $ref: '#/components/schemas/InventoryItemWithoutIds'
+            schema:
+              type: object
+              properties:
+                feedback:
+                  type: object
+                  $ref: '#/components/schemas/Feedbacks'
       responses: 
         '200':
           description: Create order feedbacks 
@@ -475,23 +484,7 @@ components:
         total:
           type: number
           example: 100
-    InventoryItemWithoutIds:
-      type: object
-      required:
-        - id
-        - name
-        - manufacturer
-        - releaseDate
-      properties:
-        feedback :
-          type: object
-        gorceries:
-          type: array
-          items: 
-            $ref: '#/components/schemas/Groceries'
-        total:
-          type: number
-          example: 100
+    
     Feedbacks:
       type: object
       properties:
