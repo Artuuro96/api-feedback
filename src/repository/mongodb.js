@@ -1,0 +1,120 @@
+const Order = require("../schemas/orders");
+const User = require("../schemas/users");
+
+const saveOder = async (order) => {
+    try {
+        const newOrder = new Order(order);
+        const res = await newOrder.save().catch(error => {
+            throw error;
+        });
+        return res;
+    } catch (error) {
+        throw error;
+    }
+}
+
+const updateOrder = async (order, idOrder) => {
+    try {
+        const userUpdated = await Order.findByIdAndUpdate({
+            _id: idOrder
+        }, order, {
+            new: true,
+            useFindAndModify: false
+        }).catch(error => {
+            throw error;
+        });
+        return userUpdated;
+    } catch (error) {
+        throw error;
+    }
+}
+
+const getOrders = async (idOrder) => {
+    try {
+        const query = idOrder ? { _id: idOrder } : {};
+        const orders = await Order.find(query).catch(error => {
+            throw error
+        })
+        return orders;
+    } catch (error) {
+        throw error;
+    }
+}
+
+const deleteOrder = async (idOrder) => {
+    try {
+        await Order.deleteOne({_id: idOrder}).catch(error => {
+            throw error;
+        });
+        return true;
+    } catch (error) {
+        throw error;
+    }
+}
+
+const saveUser = async (user) => {
+    try {
+        const newUser = new User({
+            idUser: user.idUser,
+            name: user.name,
+            username: user.username,
+            lastName: user.lastName
+        });
+        const res = await newUser.save().catch(error => {
+            throw error;
+        });
+        return res;
+    } catch (error) {
+        throw error;
+    }
+}
+
+const getUsers = async (idUser) => {
+    try {
+        const query = idUser ? { _id: idUser } : {};
+        const users = await User.find(query).catch(error => {
+            throw error
+        })
+        return users;
+    } catch (error) {
+        throw error;
+    }
+}
+
+const updateUser = async (user, idUser) => {
+    try {
+        const userUpdated = await User.findByIdAndUpdate({
+            _id: idUser
+        }, user, {
+            new: true,
+            useFindAndModify: false
+        }).catch(error => {
+            throw error;
+        });
+        return userUpdated;
+    } catch (error) {
+        throw error;
+    }
+}
+
+const deleteUser = async (idUser) => {
+    try {
+        await User.deleteOne({_id: idUser}).catch(error => {
+            throw error;
+        });
+        return true;
+    } catch (error) {
+        throw error;
+    }
+}
+
+module.exports = {
+    saveOder,
+    updateOrder,
+    deleteOrder,
+    getOrders,
+    saveUser, 
+    updateUser,
+    deleteUser,
+    getUsers
+}

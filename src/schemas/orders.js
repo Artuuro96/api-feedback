@@ -14,10 +14,18 @@ const ordersSchema = new Schema({
         type: Array,
         required: true
     },
+    orderDate: {
+        type: Date,
+        default: new Date()
+    },
     feedback: {
-        type: String,
-        required: true
+        rate: {
+            type: Number
+        },
+        review: {
+            type: String
+        }
     }
 });
 
-module.exports = moongose.model("Users", odersSchema);
+module.exports = moongose.model("Orders", ordersSchema);

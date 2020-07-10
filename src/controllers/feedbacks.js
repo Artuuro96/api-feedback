@@ -2,11 +2,22 @@ const saveFeedback = require("../services/feedback/saveFeedback");
 
 const createFeedback = async (req, res) => {
     try {
-        return res.status(201).jsonp(
-            await saveFeedback(req)
-        );
+        const payload = await saveFeedback(req.body).catch(error => {
+            throw error;
+        });
+        return res.status(payload.status).jsonp(payload);
     } catch (error) {
-        throw error;
+        console.error(error);
+        if(error instanceof Error) {
+            return res.status(500).jsonp({
+                status: 500,
+                message: error.message
+            })
+        }
+        return res.status(error.status).jsonp({
+            status: error.status,
+            message: error.message
+        });
     }
 }
 

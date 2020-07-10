@@ -16,4 +16,4 @@ const groceriesSchema = new Schema({
     }
 });
 
-module.exports = moongose.model("Users", groceriesSchema);
+module.exports = moongose.model("Groceries", groceriesSchema);
