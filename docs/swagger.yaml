@@ -1,0 +1,518 @@
+openapi: 3.0.0
+servers:
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/ArturoRodriguez/API-Feedback/1.0.0
+  - description: Local server
+    url: http://localhost:3000
+info:
+  description: Feedbacks service allows to create, read, update, delete, and other operations about order feedbacks
+  version: "1.0.1"
+  title: API Feedbacks
+  contact:
+    email: arturorodr96@gmail.com
+tags:
+  - name: Feedbacks
+    description: CRUD feedback operations
+  - name: Users
+    description: CRUD users operations
+  - name: Orders
+    description: CRUD orders operation
+paths:
+  /api/feedbacks/get/{idOrder}:
+    get:
+      tags:
+        - Feedbacks
+      operationId: getFeedbacksByOrderAndUser
+      parameters:
+        - in: path
+          name: idOrder
+          required: true
+          schema:
+            type: string
+        - in: header
+          name: userId
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: orders with feedbacks made by users
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/InventoryItem'
+  /api/feedbacks/get:
+    get:
+      tags:
+        - Feedbacks
+      operationId: getAllFeedbacks
+      responses:
+        '200':
+          description: orders with feedbacks made by users
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/InventoryItem'
+  /api/feedbacks/getLasts:
+    get:
+      tags:
+        - Feedbacks
+      operationId: getLast20Feedbacks
+      responses:
+        '200':
+          description: Array of last 20 feedbacks made by users
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/InventoryItem'
+  /api/feedbacks/get/rating/{rating}:
+    get:
+      tags:
+        - Feedbacks
+      operationId: getFeedbacksFilteredByRaiting
+      parameters:
+        - in: path
+          name: rating
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Array of feedbacks filtered by raiting made by users
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/InventoryItem'
+  /api/feedbacks/create/{idOrder}:
+    post: 
+      tags: 
+        - Feedbacks
+      operationId: createFeedback
+      parameters:
+        - in: path
+          name: idOrder
+          required: true
+          schema:
+            type: string
+        - in: header
+          name: userId
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InventoryItemWithoutIds'
+      responses: 
+        '200':
+          description: Create order feedbacks 
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InventoryItem' 
+  /api/feedbacks/update/{idOrder}:
+    put:
+      tags:
+        - Feedbacks
+      operationId: updateFeedbackByOrderAndUser
+      parameters:
+        - in: path
+          name: idOrder
+          required: true
+          schema:
+            type: string
+        - in: header
+          name: userId
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema: 
+              $ref: '#/components/schemas/InventoryItemWithoutIds'
+      responses: 
+        '200':
+          description: Create order feedbacks 
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InventoryItem'
+  /api/feedbacks/delete/{idOrder}:
+    delete:
+      tags:
+        - Feedbacks
+      operationId: deleteFeedbackByOrderAndUser
+      parameters:
+        - in: path
+          name: idOrder
+          required: true
+          schema:
+            type: string
+        - in: header
+          name: userId
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: orders with feedbacks made by users
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/InventoryItemWithoutFeedback'
+  /api/users/get:
+    get: 
+      tags:
+        - Users
+      operationId: get all users
+      responses: 
+        '200':
+          description: getUsers
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User' 
+  /api/users/get/{idUser}:
+    get: 
+      tags: 
+        - Users
+      operationId: getUserById
+      parameters:
+        - in: path
+          name: idUser
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: get users by Id
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User' 
+  /api/users/create:
+    post: 
+      tags: 
+        - Users
+      operationId: createUserById
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserWithoutId'
+      responses:
+        200:
+          description:  new user
+          content:
+            application/json:
+              schema: 
+                $ref: '#/components/schemas/User' 
+  /api/users/update/{idUser}:
+    put: 
+      tags: 
+        - Users
+      operationId: updateUserById
+      parameters:
+        - in: path
+          name: idUser
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserWithoutId'
+      responses:
+        200:
+          description: update user by id
+          content:
+            application/json:
+              schema: 
+                $ref: '#/components/schemas/User' 
+  /api/users/delete/{idUser}:
+    delete: 
+      tags: 
+        - Users
+      operationId: deleteUserById
+      parameters:
+        - in: path
+          name: idUser
+          required: true
+          schema:
+            type: string
+      responses:
+        204:
+          description: No content
+  /api/orders/get:
+    get:
+      tags: 
+        - Orders
+      operationId: getAllOrders
+      responses:
+        '200':
+          description: orders with feedbacks made by users
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/InventoryItem'
+  /api/orders/get/{idOrder}:
+    get:
+      tags:
+        - Orders
+      operationId: getOrdersByidOrder
+      parameters:
+        - in: path
+          name: idOrder
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: orders made by users
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/InventoryItem'
+  /api/orders/update/{idOrder}:
+    put: 
+      tags: 
+        - Orders
+      operationId: updateOrderById
+      parameters:
+        - in: path
+          name: idOrder
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InventoryItemWithoutIdsAndFeedBack'
+      responses:
+        200:
+          description: Order Updated
+          content:
+            application/json:
+              schema: 
+                $ref: '#/components/schemas/InventoryItemWithoutFeedback' 
+  /api/orders/create:
+    post:
+      tags:
+        - Orders
+      operationId: createNewOrder
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Order'
+      responses:
+        200:
+          description: Order Updated
+          content:
+            application/json:
+              schema: 
+                $ref: '#/components/schemas/InventoryItemWithoutFeedback' 
+  /api/orders/delete/{idOrder}/{idUser}:
+    delete:
+      tags:
+        - Orders
+      operationId: deleteOrderById
+      parameters:
+        - in: path
+          name: idOrder
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: idUser
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: No content
+components:
+  schemas:
+    UserWithoutId:
+      type: object
+      properties:
+        lastName:
+          type: string
+          example: Rodriguez
+        name:
+          type: string
+          example: Arturo
+        username:
+          type: string
+          example: arturo96
+    User:
+      type: object
+      properties:
+        lastName:
+          type: string
+          example: Rodriguez
+        name:
+          type: string
+          example: Arturo
+        username:
+          type: string
+          example: arturo96
+        _id:
+          type: string
+          example: '5f080485a119e6ab396b44ff'
+    Order:
+      type: object
+      required:
+        - id
+        - name
+        - manufacturer
+        - releaseDate
+      properties:
+        groceries:
+          type: array
+          items: 
+            $ref: '#/components/schemas/Groceries'
+        idUser:
+          type: string
+          example: '5f080485a119e6ab396b44ff'
+        total:
+          type: number
+          example: 100
+    InventoryItem:
+      type: object
+      required:
+        - id
+        - name
+        - manufacturer
+        - releaseDate
+      properties:
+        feedback :
+          $ref: '#/components/schemas/Feedbacks'
+        gorceries:
+          type: array
+          items: 
+            $ref: '#/components/schemas/Groceries'
+        oderDate:
+          type: string
+          example: '2020-07-10T06:02:41.832Z'
+        _id:
+          type: string
+          example: '5f0804a0a119e6ab396b4500'
+        idUser:
+          type: string
+          example: '5f080485a119e6ab396b44ff'
+        total:
+          type: number
+          example: 100
+    InventoryItemWithoutIdsAndFeedBack:
+      type: object
+      required:
+        - id
+        - name
+        - manufacturer
+        - releaseDate
+      properties:
+        groceries:
+          type: array
+          items: 
+            $ref: '#/components/schemas/Groceries'
+        oderDate:
+          type: string
+          example: '2020-07-10T06:02:41.832Z'
+        total:
+          type: number
+          example: 100
+    InventoryItemWithoutFeedback:
+      type: object
+      required:
+        - id
+        - name
+        - manufacturer
+        - releaseDate
+      properties:
+        feedback :
+          type: object
+        gorceries:
+          type: array
+          items: 
+            $ref: '#/components/schemas/Groceries'
+        oderDate:
+          type: string
+          example: '2020-07-10T06:02:41.832Z'
+        _id:
+          type: string
+          example: '5f0804a0a119e6ab396b4500'
+        idUser:
+          type: string
+          example: '5f080485a119e6ab396b44ff'
+        total:
+          type: number
+          example: 100
+    InventoryItemWithoutIds:
+      type: object
+      required:
+        - id
+        - name
+        - manufacturer
+        - releaseDate
+      properties:
+        feedback :
+          type: object
+        gorceries:
+          type: array
+          items: 
+            $ref: '#/components/schemas/Groceries'
+        total:
+          type: number
+          example: 100
+    Feedbacks:
+      type: object
+      properties:
+        rate: 
+          type: string
+          example: 5
+        review: 
+          type: string
+          example: 'They are excellent products, all are ok'
+    Groceries: 
+      type: object
+      properties:
+        _id: 
+          type: number
+          example: 0
+        name: 
+          type: string
+          example: 'Manzana verde'
+        description:
+          type: string
+          example: '1kg de Manzana Golden'
+        price: 
+          type: string
+          example: '85'

@@ -23,7 +23,8 @@
     "mongoose": "^5.9.22",
     "swagger-jsdoc": "^4.0.0",
     "swagger-ui-express": "^4.1.4",
-    "validate": "^5.1.0"
+    "validate": "^5.1.0",
+    "yamljs": "^0.3.0"
   },
   "devDependencies": {}
 }

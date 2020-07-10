@@ -7,7 +7,6 @@ module.exports = getLastFeedbacks = async (req, res) => {
         const payload = await mongoRepository.getLastFeedbacks().catch(error => {
             throw error;
         });
-        console.log(payload)
         return res.status(httpStatus.OK).jsonp(payload);
     } catch (error) {
         console.error(error);
