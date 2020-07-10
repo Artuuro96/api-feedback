@@ -5,7 +5,6 @@
 ## Database
 I decided to use a No-SQL database such as MongoDB because this is a little project and MongoDB is able to handle correctly the relations between the information, furthermore MongoDB is the database in which i consider that i have more relevant experience.
 
-
 ## Running Project
 > ```
 > git clone https://github.com/Artuuro96/api-feedback.git
@@ -254,9 +253,184 @@ Response:
 ***
 
 ### GET - /api/feedbacks
-```
+Response: 
+> ```
+>[
+>    {
+>        "feedback": {
+>            "rate": 5,
+>            "review": "Its a great product, it arrived in time"
+>        },
+>        "groceries": [
+>            {
+>                "_id": 0,
+>                "name": "Manzana Verde",
+>                "description": "1 kg Manzana Golden",
+>                "price": 85
+>            },
+>            {
+>                "_id": 1,
+>                "name": "Sabritas Jalapeño",
+>                "description": "Empaque de 350gr",
+>                "price": 15
+>            }
+>        ],
+>        "orderDate": "2020-07-10T06:02:41.832Z",
+>        "_id": "5f0804a0a119e6ab396b4500",
+>        "idUser": "5f080485a119e6ab396b44ff",
+>        "total": 100,
+>        "__v": 0
+>    },
+>    {
+>        "feedback": {
+>            "rate": 5,
+>            "review": "Its a great product"
+>        },
+>        "groceries": [
+>            {
+>                "_id": 0,
+>                "name": "Manzanita Sol",
+>                "description": "2lt",
+>                "price": 40
+>            },
+>            {
+>                "_id": 1,
+>                "name": "Coca Cola",
+>                "description": "1lt",
+>                "price": 15
+>            }
+>        ],
+>        "orderDate": "2020-07-10T08:58:14.311Z",
+>        "_id": "5f082dabb806e3d6dfcda1c0",
+>        "idUser": "5f080485a119e6ab396b44ff",
+>        "total": 65,
+>        "__v": 0
+>    }
+>    .
+>    .
+>    .
+>]
+>```
 
-```
+### GET - /api/feedbacks/lasts
+Response: 
+> ```
+>[
+>    {
+>        "feedback": {
+>            "rate": 5,
+>            "review": "Its a great product, it arrived in time"
+>        },
+>        "groceries": [
+>            {
+>                "_id": 0,
+>                "name": "Manzana Verde",
+>                "description": "1 kg Manzana Golden",
+>                "price": 85
+>            },
+>            {
+>                "_id": 1,
+>                "name": "Sabritas Jalapeño",
+>                "description": "Empaque de 350gr",
+>                "price": 15
+>            }
+>        ],
+>        "orderDate": "2020-07-10T06:02:41.832Z",
+>        "_id": "5f0804a0a119e6ab396b4500",
+>        "idUser": "5f080485a119e6ab396b44ff",
+>        "total": 100,
+>        "__v": 0
+>    },
+>    {
+>        "feedback": {
+>            "rate": 5,
+>            "review": "Its a great product"
+>        },
+>        "groceries": [
+>            {
+>                "_id": 0,
+>                "name": "Manzanita Sol",
+>                "description": "2lt",
+>                "price": 40
+>            },
+>            {
+>                "_id": 1,
+>                "name": "Coca Cola",
+>                "description": "1lt",
+>                "price": 15
+>            }
+>        ],
+>        "orderDate": "2020-07-10T08:58:14.311Z",
+>        "_id": "5f082dabb806e3d6dfcda1c0",
+>        "idUser": "5f080485a119e6ab396b44ff",
+>        "total": 65,
+>        "__v": 0
+>    }
+>    .
+>    .
+>    .
+>]
+>```
+
+### GET - /api/feedbacks/rating/:rating
+Response: 
+> ```
+>[
+>    {
+>        "feedback": {
+>            "rate": 5,
+>            "review": "Its a great product, it arrived in time"
+>        },
+>        "groceries": [
+>            {
+>                "_id": 0,
+>                "name": "Manzana Verde",
+>                "description": "1 kg Manzana Golden",
+>                "price": 85
+>            },
+>            {
+>                "_id": 1,
+>                "name": "Sabritas Jalapeño",
+>                "description": "Empaque de 350gr",
+>                "price": 15
+>            }
+>        ],
+>        "orderDate": "2020-07-10T06:02:41.832Z",
+>        "_id": "5f0804a0a119e6ab396b4500",
+>        "idUser": "5f080485a119e6ab396b44ff",
+>        "total": 100,
+>        "__v": 0
+>    },
+>    {
+>        "feedback": {
+>            "rate": 5,
+>            "review": "Its a great product"
+>        },
+>        "groceries": [
+>            {
+>                "_id": 0,
+>                "name": "Manzanita Sol",
+>                "description": "2lt",
+>                "price": 40
+>            },
+>            {
+>                "_id": 1,
+>                "name": "Coca Cola",
+>                "description": "1lt",
+>                "price": 15
+>            }
+>        ],
+>        "orderDate": "2020-07-10T08:58:14.311Z",
+>        "_id": "5f082dabb806e3d6dfcda1c0",
+>        "idUser": "5f080485a119e6ab396b44ff",
+>        "total": 65,
+>        "__v": 0
+>    }
+>    .
+>    .
+>    .
+>]
+>```
 
 ### POST - /api/feedbacks/:idOrder
 Request:

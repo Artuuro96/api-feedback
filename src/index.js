@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
-const { createFeedback, readFeedback, updateFeedback, deleteFeedback} = require("./controllers/feedbacks");
+const { createFeedback, readFeedback, updateFeedback, deleteFeedback, getByRating,  getLasts} = require("./controllers/feedbacks");
 const { createOrder, readOrders, upateOrder, deleteOrder } = require("./controllers/orders");
 const { createUser, updateUser, deleteUser, readUsers} = require("./controllers/users");
 const constants = require("./util/constants");
@@ -16,8 +16,10 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.route(constants.FEEDBACK_PATH + "/:idOrder").post(createFeedback);
 app.route(constants.FEEDBACK_PATH + "/:idOrder").put(updateFeedback);
 app.route(constants.FEEDBACK_PATH + "/:idOrder").delete(deleteFeedback);
-app.route(constants.FEEDBACK_PATH + "/:idOrder").get(readFeedback);
-app.route(constants.FEEDBACK_PATH).get(readFeedback);
+app.route(constants.FEEDBACK_PATH + "/:idOrder").get(readOrders);
+app.route(constants.FEEDBACK_PATH + "/lasts").get(getLasts);
+app.route(constants.FEEDBACK_PATH + "/rating/:rating").get(getByRating);
+app.route(constants.FEEDBACK_PATH).get(readOrders);
 
 app.route(constants.ORDERS_PATH).post(createOrder);
 app.route(constants.ORDERS_PATH + "/:idOrder").put(upateOrder);

@@ -2,12 +2,13 @@ const mongoRepository = require("../../repository/mongodb");
 const httpStatus = require("../../util/httpStatus");
 const { BadRequestError } = require("../../errors/Exception");
 
-module.exports = getLastFeedbacks = async (req, res) => {
+module.exports = getFeedbacksByRating = async (req, res) => {
     try {
-        const payload = await mongoRepository.getLastFeedbacks().catch(error => {
+        const { rating } = req.params;
+        const payload = await mongoRepository.getFeedbacksByRating(Number(rating)).catch(error => {
             throw error;
         });
-        console.log(payload)
+
         return res.status(httpStatus.OK).jsonp(payload);
     } catch (error) {
         console.error(error);

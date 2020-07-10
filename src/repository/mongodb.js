@@ -1,6 +1,30 @@
 const Order = require("../schemas/orders");
 const User = require("../schemas/users");
 
+const getLastFeedbacks = async () => {
+    try {
+        const lastFeedbacks = await Order.find().sort({ $natural: -1 }).limit(20).catch(error => {
+            throw error;
+        });
+        return lastFeedbacks;
+    } catch (error) {
+        throw error;
+    }
+}
+
+const getFeedbacksByRating = async (rating) => {
+    try {
+        const feedbacks = await Order.find({
+            "feedback.rate": rating
+        }).catch(error => {
+            throw error;
+        });
+        return feedbacks;
+    } catch (error) {
+        throw error;
+    }
+}
+
 const updateFeedback = async (feedback, idOrder, idUser) => {
     try {
         const userUpdated = await Order.findByIdAndUpdate({
@@ -159,6 +183,8 @@ const deleteUser = async (idUser) => {
 }
 
 module.exports = {
+    getLastFeedbacks,
+    getFeedbacksByRating,
     saveFeedback,
     updateFeedback,
     deleteFeedback,
