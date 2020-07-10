@@ -1,7 +1,7 @@
 openapi: 3.0.0
 servers:
-  - description: SwaggerHub API Auto Mocking
-    url: https://virtserver.swaggerhub.com/ArturoRodriguez/API-Feedback/1.0.0
+  - description: Dev server
+    url: https://api-feedbacks.herokuapp.com
   - description: Local server
     url: http://localhost:3000
 info:

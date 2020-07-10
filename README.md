@@ -14,7 +14,7 @@ I decided to use a No-SQL database such as MongoDB because this is a little proj
 > node src/index.js
 
 ## API Documentation
-You also can read de documentation and test API with swagger on your local machine {{host}}/api-docs
+You also can read de documentation and test API with swagger on {{host}}/api-docs
 
 #### You have to create a new user or use one of the users that already exist in the database, then you can create a new order or use one of the orders that already exist in the database. Finally you can write and rate with idUser and idOrder the order that you want to rate
 
